@@ -1,10 +1,6 @@
-// Laboratório 1
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
-// exercicio 1
 
 int main(){
     float jog1, jog2, jog3, premio, soma_jog;

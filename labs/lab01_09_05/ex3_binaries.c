@@ -3,7 +3,7 @@
 #include <math.h>
 
 int main(){
-    float m, h, imc;
+    int b1, b2, b3, b4, n_int;
 
     printf("Informe os 4 bits do numero binario: \n");
     scanf("%d%d%d%d", &b1, &b2, &b3, &b4);

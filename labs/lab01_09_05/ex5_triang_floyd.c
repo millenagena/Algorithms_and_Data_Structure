@@ -3,7 +3,7 @@
 #include <math.h>
 
 int main(){
-    int num, contl = 1, contc = 1;
+    int num, contc = 1;
 
     printf("Informe um numero inteiro: ");
     scanf("%d", &num);
