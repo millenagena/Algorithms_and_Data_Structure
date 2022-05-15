@@ -90,6 +90,13 @@ void mostra_nome_tel_email(pessoa vetp[], int contador){
     getch();
 }
 
+char maiuscula(char letra){
+    if(letra >= 'a' && letra <= 'z') {
+        letra = letra -32;
+    }   
+    return letra;
+}
+
 void ordem_alf(pessoa vetp[], int qntd){
     int i, j;
     pessoa aux;
@@ -111,6 +118,7 @@ void insere_pessoa(pessoa vetp[], int contador){
     printf("\nNome: ");
     fflush(stdin);
     gets(vetp[contador].nome);
+    vetp[contador].nome[0] = maiuscula(vetp[contador].nome[0]);
     printf("\nE-mail: ");
     fflush(stdin);
     gets(vetp[contador].email);
@@ -186,13 +194,6 @@ int retira_pessoa(pessoa vetp[], int contador, char nome[]){
 		getch();
     }
     return contador;
-}
-
-char maiuscula(char letra){
-    if(letra >= 'a' && letra <= 'z') {
-        letra = letra -32;
-    }   
-    return letra;
 }
 
 void busca_nome(pessoa *p, char *nome){
