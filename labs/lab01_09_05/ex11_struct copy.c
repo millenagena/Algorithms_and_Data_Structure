@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
+#include <ctype.h>
 
 struct Endereco{
     char rua[50];
@@ -70,22 +71,19 @@ void printa_struct(pessoa *ag){
 
 void ordem_alf(pessoa vetp[], int qntd){
     int i, j;
-    char aux[100];
+    pessoa aux;
 
-    for(i=0; i<qntd; i++){
+    for(i=0; i<=qntd; i++){
 
-        for(j=0; j<qntd; j++){
+        for(j=i+1; j<=qntd; j++){
 
-            if(strcmp(vetp[j-1].nome, vetp[j].nome) > 0){
-
-                strcpy(aux, vetp[j-1].nome);
-                strcpy(vetp[j-1].nome, vetp[j].nome);
-                strcpy(vetp[j].nome, aux);
-
+            if(strcmp(vetp[i].nome, vetp[j].nome) > 0){
+                aux = vetp[i];
+                vetp[i] = vetp[j];
+                vetp[j] = aux;
             }
         }
     }
-
 }
 
 void insere_pessoa(pessoa vetp[], int contador){
@@ -134,13 +132,19 @@ void insere_pessoa(pessoa vetp[], int contador){
     printf("\nObs especial: ");
     fflush(stdin);
     gets(vetp[contador].obs);
+
+    ordem_alf(vetp, contador);
 }
 
 char maiuscula(char letra){
-    if(letra >= 'a' && letra <= 'z') {
-        letra = letra -32;
-    }   
-    return letra;
+    char letra_maiuscula;
+
+    if(letra >= 97 && letra <= 122){
+         letra_maiuscula = letra - 32;
+    }else{
+        letra_maiuscula = letra;
+    }
+    return letra_maiuscula;
 }
 
 void busca_nome(pessoa *p, char *nome){
@@ -212,7 +216,7 @@ int main(){
     strcpy(agenda[cont].obs, "Odeia arroz");
 
     cont = 2;
-    strcpy(agenda[cont].nome, "Ana da Silva");
+    strcpy(agenda[cont].nome, "ana da Silva");
     strcpy(agenda[cont].email, "millena@email");
     strcpy(agenda[cont].end.rua, "Amarela");
     agenda[cont].end.num = 12;
@@ -242,6 +246,13 @@ int main(){
     agenda[cont].data_niver.mes = 5;
     agenda[cont].data_niver.ano = 2014;
     strcpy(agenda[cont].obs, "Odeia arroz");
+
+    ordem_alf(agenda, cont);
+
+    for(int i=0; i <= cont; i++){
+        printa_struct(&agenda[i]);
+        printf("\n");
+    }
 
     cont = 4;
 

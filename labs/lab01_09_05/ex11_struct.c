@@ -69,17 +69,34 @@ void printa_struct(pessoa *ag){
     printa_string(ag->obs);
 }
 
-void printa_nome_tel_email(pessoa vetp){
+void mostra_dados(pessoa vetp[], int contador){
+    for(int i=0; i < contador; i++){
+        printa_struct(&vetp[i]);
+        printf("\n");
+    }
+    getch();
+}
 
+void mostra_nome_tel_email(pessoa vetp[], int contador){
+
+    for(int i=0; i < contador; i++){
+        printf("Nome: ");
+        printa_string(vetp[i].nome);
+        printf("E-mail: ");
+        printa_string(vetp[i].email);
+        printf("Telefone: (%d)%d\n", vetp[i].tel.ddd, vetp[i].tel.numero);
+        printf("\n");
+    }
+    getch();
 }
 
 void ordem_alf(pessoa vetp[], int qntd){
     int i, j;
     pessoa aux;
 
-    for(i=0; i<qntd; i++){
+    for(i=0; i<=qntd; i++){
 
-        for(j=i+1; j<qntd; j++){
+        for(j=i+1; j<=qntd; j++){
 
             if(strcmp(vetp[i].nome, vetp[j].nome) > 0){
                 aux = vetp[i];
@@ -140,6 +157,37 @@ void insere_pessoa(pessoa vetp[], int contador){
     ordem_alf(vetp, contador);
 }
 
+int retira_pessoa(pessoa vetp[], int contador, char nome[]){
+
+    int aux=0, indice_pessoa, op;
+    for(int i=0; i<contador; i++){
+        if(strcmp(nome, vetp[i].nome) == 0){
+            aux = 1;
+            indice_pessoa = i;
+            printf("Nome: ");
+            printa_string(vetp[i].nome);
+            printf("E-mail: ");
+            printa_string(vetp[i].email);
+            printf("Telefone: (%d)%d\n", vetp[i].tel.ddd, vetp[i].tel.numero);
+            printf("\n");
+        }
+    }
+    if(aux == 1){
+        printf("\n\nDeseja mesmo retirar essa pessoa? Digite: 1 - sim ou 2 - não: ");
+		scanf("%d", &op);
+		if(op == 1)
+		{
+			for(int i = indice_pessoa; i < contador; i++)
+				vetp[i] = vetp[i+1];
+			return contador - 1;	
+		}
+    }else{
+        printf("\nPessoa não registrada.");	
+		getch();
+    }
+    return contador;
+}
+
 char maiuscula(char letra){
     if(letra >= 'a' && letra <= 'z') {
         letra = letra -32;
@@ -159,27 +207,31 @@ void busca_nome(pessoa *p, char *nome){
             aux = 0;
         }
     }
+
     if(aux == 1){
         printa_struct(p);
     }
+    getch();
 }
 
 void busca_mes(pessoa *p, int m){
     if(p->data_niver.mes == m){
         printa_struct(p);
     }
+    getch();
 }
 
 void busca_dia_mes(pessoa *p, int d, int m){
     if(p->data_niver.dia == d && p->data_niver.mes == m){
         printa_struct(p);
     }
+    getch();
 }
 
 int main(){
     setlocale(LC_ALL, "portuguese");
     int tam=100, cont=0, opcao, mes_info, dia_info, mes_info2;
-    char nome_info[30], nome_ma[30];
+    char nome_info[30], nome_ma[30], nome_info2[30];
     pessoa agenda[tam];
 
     do{
@@ -211,40 +263,50 @@ int main(){
 				for(int i=0; nome_info[i] != '\0'; i++){
                     nome_ma[i] = maiuscula(nome_info[i]);
                 }
-                for(int i=0; i <= cont; i++){
+                for(int i=0; i < cont; i++){
                     busca_nome(&agenda[i], nome_ma);
                     printf("\n");
                 }
 				break;
 			case 3:
 				system("cls");
+                printf("\n");
 				printf("Informe o mes: ");
                 scanf("%d", &mes_info);
-                for(int i=0; i <= cont; i++){
+                for(int i=0; i < cont; i++){
                     busca_mes(&agenda[i], mes_info);
                     printf("\n");
                 }
 				break;
 			case 4:
 				system("cls");
+                printf("\n");
                 printf("\nInforme o dia: ");
                 scanf("%d", &dia_info);
                 printf("\nInforme o mes: ");
                 scanf("%d", &mes_info2);
-				for(int i=0; i <= cont; i++){
+				for(int i=0; i < cont; i++){
                     busca_dia_mes(&agenda[i], dia_info, mes_info2);
                     printf("\n");
                 }
 				break;
 			case 5:
 				system("cls");
+                printf("\n");
+                printf("Informe o nome da pessoa a ser retirada: ");
+                fflush(stdin);
+                gets(nome_info2);
+                cont = retira_pessoa(agenda, cont, nome_info2);
 				break;
 			case 6:
 				system("cls");
-                printa_nome_tel_email(agenda);
+                printf("\n");
+                mostra_nome_tel_email(agenda, cont);
 				break;
 			case 7:
 				system("cls");
+                printf("\n");
+                mostra_dados(agenda, cont);
 				break;
 				
 			default:
