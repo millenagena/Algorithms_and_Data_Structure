@@ -86,7 +86,7 @@ int main(){
     }
     printf("\nSoma 5: %.2f", soma5);
 
-    // soma valores das partes hachuradas 6 --
+    // soma valores das partes hachuradas 6
     for(i = 0; i < m; i++){
         for(j = 0; j < n; j++){
             if(j > ((n-1)-i) && j < i || j < ((n-1)-i) && j > i){
