@@ -8,7 +8,8 @@ struct Ponto{
 typedef struct Ponto ponto;
 
 void altera_pto(ponto *pto, int cnste){
-    printf("\nResultado: (%d,%d) * %d: (%d,%d)", pto->x, pto->y, cnste, (pto->x*cnste), (pto->y*cnste));
+    pto->x = (pto->x*cnste);
+    pto->y = (pto->y*cnste);
 }
 
 int main(){
@@ -21,7 +22,9 @@ int main(){
     printf("\nEntre com o valor da constante: ");
     scanf("%d", &cnste);
 
+    printf("\nResultado: (%d,%d) * %d: ", pto->x, pto->y, cnste);
     altera_pto(pto, cnste);
+    printf("(%d,%d)", pto->x, pto->y);
 
     free(pto);
     return 0;
