@@ -36,9 +36,9 @@ void printa_struct(populacao *p){
             printf("%d", p->pop[i].codigo_genetico[j]);
         }
         printf("\nAptidao absoluta: ");
-        printf("%.2lf", p->pop[i].aptidao_abs);
+        printf("%lf", p->pop[i].aptidao_abs);
         printf("\nAptidao relativa: ");
-        printf("%.2lf", p->pop[i].aptidao_relativa);
+        printf("%lf", p->pop[i].aptidao_relativa);
     }
 }
 
@@ -50,9 +50,9 @@ void printa_individuo(individuo *ind, int indice){
         printf("%d", ind->codigo_genetico[j]);
     }
     printf("\nAptidao absoluta: ");
-    printf("%.2lf", ind->aptidao_abs);
+    printf("%.15lf", ind->aptidao_abs);
     printf("\nAptidao relativa: ");
-    printf("%.2lf", ind->aptidao_relativa);
+    printf("%.15lf", ind->aptidao_relativa);
 }
 
 float soma_apt(populacao *p){
@@ -111,10 +111,9 @@ int main(){
         }
     }
     calcula_apt_relativa(&popu);
-    printa_struct(&popu);
-    printf("\n\n======Individuos selecionados===");
+    //printa_struct(&popu);
+    printf("\n\n======Individuos selecionados======");
     metodo_roleta(&popu);
-    //printa_individuo(&popu.pop[1]);
 
     free(popu.pop);
     return 0;
