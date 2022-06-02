@@ -14,7 +14,7 @@ Ponto *gera_pto(){
     return p;
 }
 
-float set_pto(Ponto *p, float x, float y){
+int set_pto(Ponto *p, float x, float y){
     if(p == NULL){
         return 0; // FALHA
     }
@@ -23,7 +23,7 @@ float set_pto(Ponto *p, float x, float y){
     return 1; //SUCESSO
 }
 
-float get_pto(Ponto *p, float *x, float *y){
+int get_pto(Ponto *p, float *x, float *y){
     if(p == NULL){
         return 0; // FALHA
     }
