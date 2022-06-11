@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include<string.h>
 #include "listaNoOrdBebidas.h"
 
 #define MAX 10
@@ -18,7 +19,7 @@ struct listaBebidas{
 };
 typedef struct listaBebidas listaBebidas;
 
-listaBebidas* cria_lista(){
+listaBebidas *cria_lista(){
     listaBebidas *lst;
     lst = (listaBebidas*) malloc(sizeof(listaBebidas));
 
@@ -47,6 +48,9 @@ int insere_registro(listaBebidas *lst, char *nome, int vol, float preco){
     if(lst == NULL || lista_cheia(lst) == 1){
         return 0;
     }
+    strcpy(reg.nome, nome);
+    reg.volume = vol;
+    reg.preco = preco;
     lst->no[lst->fim] = reg;
     lst->fim++;
     return 1;
@@ -61,10 +65,14 @@ int apagar_ultimo_registro(listaBebidas *lst){
 }
 
 void imprime_tabela(listaBebidas *lst){
-    for(int i=0; i<lst->fim; i++){
-        printf("Nome bebida: %s", lst->no[i].nome);
-        printf("Volume: %d", lst->no[i].volume);
-        printf("Preco: %.2f", lst->no[i].preco);
+    if(lst == NULL || lista_vazia(lst) == 1){
+        printf("\n Lista nula ou sem registros");
+    }else{
+        for(int i=0; i<lst->fim; i++){
+            printf("\n Nome bebida: %s -", lst->no[i].nome);
+            printf(" Volume: %d -", lst->no[i].volume);
+            printf(" Preco: %.2f", lst->no[i].preco);
+        }
     }
 }
 

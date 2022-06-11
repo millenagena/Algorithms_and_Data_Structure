@@ -20,7 +20,7 @@ int main()
             printf(" 2. Verificar lista vazia\n");
             printf(" 3. Verificar lista cheia\n");
             printf(" 4. Inserir registro\n");
-            printf(" 5. Excluir último registro\n");
+            printf(" 5. Excluir ultimo registro\n");
             printf(" 6. Imprimir registros\n");
             printf(" 7. Liberar lista\n");
             printf(" 8. SAIR\n");
@@ -60,12 +60,12 @@ int main()
                 break;
 
             case 4:
-                printf("\n\n Informe o o registro a ser inserido: ");
-                printf("Nome da bebida: ");
+                printf("\n\n Informe o registro a ser inserido: \n");
+                printf(" Nome da bebida: ");
                 scanf("%s", &nome);
-                printf("Volume: ");
+                printf(" Volume: ");
                 scanf("%d", &vol);
-                printf("Preco: ");
+                printf(" Preco: ");
                 scanf("%f", &preco);
                 res = insere_registro(lst, nome, vol, preco);
                 if(res == 1)
