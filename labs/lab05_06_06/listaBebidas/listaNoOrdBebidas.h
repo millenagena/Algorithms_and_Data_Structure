@@ -1,4 +1,3 @@
-#include<conio.h>
 /*
 Nome: listaNaoOrdenada
 Dados: numeros inteiros
