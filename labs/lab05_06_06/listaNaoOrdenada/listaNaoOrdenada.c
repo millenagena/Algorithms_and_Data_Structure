@@ -80,8 +80,12 @@ int obtem_valor_elem(Lista *lst, int pos){
 }
 
 void imprime_lista(Lista *lst){
-    for(int i=0; i<lst->Fim; i++){
-        printf("%d ", lst->no[i]);
+    if(lst == NULL || lista_vazia(lst) == 1){
+        printf("\n Lista nula ou sem registros");
+    }else{
+        for(int i=0; i<lst->Fim; i++){
+            printf("%d ", lst->no[i]);
+        }
     }
 }
 
