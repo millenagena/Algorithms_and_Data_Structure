@@ -24,42 +24,32 @@ Pos-condicao: nenhuma
 int lista_vazia(Lista *lst);
 
 /*
-Entradas: endereco de uma lista e o elemento a ser inserido
+Entradas: endereco de uma lista e o registro a ser inserido (char, int, float)
 Pre-condicao: lista ser valida e nao estar cheia
 Processo: inserir o elemento no final da lista
 Saida: 1 se sucesso ou 0 se falha
 Pos-condicao: a lista de entrada com um elemento a mais
 */
-int insere_elem(Lista *lst, int elem);
+int insere_registro(Lista *lst, char *nome, int vol, float preco);
 
 /*
-Entradas: endereco de uma lista e o elemento a ser removido
+Entradas: endereco de uma lista
 Pre-condicao: lista ser valida e nao estar vazia
-Processo: percorrer a lista ate encontrar o elemento desejado ou chegar ao seu final.
-          Se o elemento existe, remova-o da lista
+Processo: remover o ultimo registro da lista e decrementar 
+          o numero de registros na lista
 Saida: 1 se sucesso e 0 se falha
 Pos-condicao: a lista de entrada com 1 elemento a menos
 */
-int remove_elem(Lista *lst, int elem);
-
-/*
-Entradas: endereco da lista e posicao do elemento a ser localizado
-Pre-condicao: lista ser valida e nao estar vazia
-Processo: percorrer a lista ate encontrar a posicao desejada ou chegar ao seu final.
-          Se a posicao existe, retorna o elemento dessa posicao.
-Saida: elemento na posicao informada
-Pos-condicao: nenhuma
-*/
-int obtem_valor_elem(Lista lst, int pos);
+int apagar_ultimo_registro(Lista *lst);
 
 /*
 Entradas: endereco da lista
 Pre-condicao: lista ser valida e nao estar vazia
-Processo: percorrer a lista e imprimir cada um dos elementos
+Processo: percorrer a lista e imprimir cada um dos registros
 Saida: nenhuma
 Pos-condicao: nenhuma
 */
-void imprime_lista(Lista lst);
+void imprime_tabela(Lista lst);
 
 /*
 Entradas: endereco de memoria do endereco da lista
@@ -70,4 +60,3 @@ Saida: nenhuma
 Pos-condicao: memoria liberada
 */
 void libera_lista(Lista *lst);
-
