@@ -21,7 +21,7 @@ Processo: verifica se a lista esta na condicao de vazia
 Saida: 1 se vazia 0 caso contrario
 Pos-condicao: nenhuma
 */
-int lista_vazia(Lista *lst);
+int lista_vazia(Lista lst);
 
 /*
 Entradas: endereco de uma lista e o registro a ser inserido (char, int, float)

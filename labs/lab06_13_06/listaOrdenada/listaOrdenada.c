@@ -15,7 +15,7 @@ Lista cria_lista() {
     return NULL;
 }
 
-int lista_vazia(Lista *lst) {
+int lista_vazia(Lista lst) {
     if(lst == NULL)
         return 1;
     else

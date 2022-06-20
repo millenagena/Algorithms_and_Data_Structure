@@ -22,7 +22,7 @@ Lista cria_lista() {
     return NULL;
 }
 
-int lista_vazia(Lista *lst) {
+int lista_vazia(Lista lst) {
     if(lst == NULL)
         return 1;
     else
@@ -62,17 +62,15 @@ int apagar_ultimo_registro(Lista *lst){
     aux->prox = aux2->prox; // retira no da lista
     free(aux2); // libera memoria alocada
     return 1;
-
 }
 
 void imprime_tabela(Lista lst){
-    printf("Tabela de bebidas: {");
+    printf("Tabela de bebidas:");
     for(lst; lst != NULL; lst = lst->prox){
         printf("\n Nome bebida: %s -", lst->info.nome);
         printf(" Volume: %d -", lst->info.volume);
         printf(" Preco: %.2f", lst->info.preco);
     }
-    printf("}");
 }
 
 void libera_lista(Lista *lst){

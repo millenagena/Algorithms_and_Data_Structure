@@ -42,7 +42,7 @@ int main()
                 break;
 
             case 2:
-                res = lista_vazia(&lst);
+                res = lista_vazia(lst);
                 if(res == 1)
                     printf("\n\n Lista vazia");
                 else
@@ -76,7 +76,6 @@ int main()
                 break;
 
             case 5:
-                printf("\n\n LISTA\n");
                 imprime_tabela(lst);
                 getch();
                 break;
