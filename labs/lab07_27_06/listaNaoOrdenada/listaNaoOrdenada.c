@@ -53,7 +53,7 @@ int remove_elem(Lista *lst, int elem){
         free(aux);
         return 1;
     }
-    // percorrimento at� achar o elem ou final de lista
+    // percorrimento ate achar o elem ou final de lista
     while(aux->prox != NULL && aux->prox->info != elem)
         aux = aux->prox;
     if(aux->prox == NULL)
