@@ -68,15 +68,18 @@ int remove_elem(Lista *lst, int elem){
 }
 
 
-int obtem_valor_elem(Lista lst, int pos){
-    int cont = 0;
+int obtem_valor_elem(Lista lst, int pos, int *elem){
+    int cont=0;
     lst = lst->prox;
 
-    if(lista_vazia(lst) == 1)
+    if(pos > lst->info){
         return 0;
+    }
+
     for(lst; lst != NULL; lst = lst->prox){
         if(cont == pos){
-            return lst->info;
+            *elem = lst->info;
+            return 1;
         }
         cont++;
     }

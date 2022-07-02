@@ -1,7 +1,7 @@
 /*
-Nome: listaNaoOrdenada
+Nome: listaOrdenada
 Dados: numeros inteiros
-Lista das operações: cria_lista, lista_vazia, lista_cheia, insere_elem, remove_elem, obtem_valor_elem, imprime_lista, libera_lista
+Lista das operações: cria_lista, lista_vazia, lista_cheia, insere_ord, remove_ord, obtem_valor_elem, imprime_lista, libera_lista
 */
 typedef struct no *Lista;
 
@@ -26,21 +26,23 @@ int lista_vazia(Lista lst);
 /*
 Entradas: endereco de uma lista e o elemento a ser inserido
 Pre-condicao: lista ser valida e nao estar cheia
-Processo: inserir o elemento no final da lista
+Processo: percorrer a lista ate encontrar a posicao correta de insercao
+          para garantir a ordenacao (proximo for maior que o elemento).
+          Inserir o elemento na posicao escolhida
 Saida: 1 se sucesso ou 0 se falha
 Pos-condicao: a lista de entrada com um elemento a mais
 */
-int insere_elem(Lista *lst, int elem);
+int insere_ord(Lista *lst, int elem);
 
 /*
 Entradas: endereco de uma lista e o elemento a ser removido
 Pre-condicao: lista ser valida e nao estar vazia
-Processo: percorrer a lista ate encontrar o elemento desejado ou chegar ao seu final.
-          Se o elemento existe, remova-o da lista
-Saida: 1 se sucesso e 0 se falha
-Pos-condicao: a lista de entrada com 1 elemento a menos
+Processo: percorrer a lista ate encontrar o elemento desejado ou um elemento
+          maior. Se o elemento existe, remova-o da lista
+Saida: 1 se sucesso ou 0 se falha
+Pos-condicao: a lista de entrada com um elemento a menos
 */
-int remove_elem(Lista *lst, int elem);
+int remove_ord(Lista *lst, int elem);
 
 /*
 Entradas: endereco da lista e posicao do elemento a ser localizado
@@ -50,7 +52,7 @@ Processo: percorrer a lista ate encontrar a posicao desejada ou chegar ao seu fi
 Saida: elemento na posicao informada
 Pos-condicao: nenhuma
 */
-int obtem_valor_elem(Lista lst, int pos, int *elem);
+int obtem_valor_elem(Lista lst, int pos);
 
 /*
 Entradas: endereco da lista

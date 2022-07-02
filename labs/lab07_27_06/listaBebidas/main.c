@@ -2,11 +2,14 @@
 #include<stdlib.h>
 #include<math.h>
 #include<conio.h>
-#include "listaNaoOrdenada.h"
+#include<string.h>
+#include "listaBebidas.h"
 
 int main()
 {
-    int op, res, elem, pos;
+    int op, res, elem, pos, vol;
+    char nome[20];
+    float preco;
     Lista lst;
 
     do{
@@ -14,22 +17,21 @@ int main()
         do{
             printf(" --- LISTAS DINAMICAS ENCADEADAS --- \n\n");
             printf(" Escolha uma opcao\n");
-            printf(" 1. Criar lista\n");
+            printf(" 1. Criar lista de bebidas\n");
             printf(" 2. Verificar lista vazia\n");
-            printf(" 3. Inserir elemento\n");
-            printf(" 4. Excluir elemento\n");
-            printf(" 5. Imprimir lista\n");
-            printf(" 6. Obter valor do elemento\n");
-            printf(" 7. Liberar lista\n");
-            printf(" 8. SAIR\n");
+            printf(" 3. Inserir registro\n");
+            printf(" 4. Excluir ultimo registro\n");
+            printf(" 5. Imprimir registros\n");
+            printf(" 6. Liberar lista\n");
+            printf(" 7. SAIR\n");
             printf(" Opcao: ");
             scanf("%d", &op);
-            if((op < 1) || (op > 9)) {
+            if((op < 1) || (op > 7)) {
                 printf("\n\n Opcao Invalida! Tente novamente...");
                 getch();
                 system("CLS || clear");
             }
-        } while((op < 1) || (op > 9));
+        } while((op < 1) || (op > 7));
 
         switch(op)
         {
@@ -49,21 +51,23 @@ int main()
                 break;
 
             case 3:
-                printf("\n\n Informe o elemento a ser inserido: ");
-                scanf("%d", &elem);
-                res = insere_elem(&lst, elem);
+                printf("\n\n Informe o registro a ser inserido: \n");
+                printf(" Nome da bebida: ");
+                scanf("%s", &nome);
+                printf(" Volume: ");
+                scanf("%d", &vol);
+                printf(" Preco: ");
+                scanf("%f", &preco);
+                res = insere_registro(&lst, nome, vol, preco);
                 if(res == 1)
-                    printf("\n\n Elemento inserido com sucesso");
+                    printf("\n\n Registro inserido com sucesso");
                 else
-                    printf("\n\n Elemento nao inserido");
-
+                    printf("\n\n Registro nao inserido");
                 getch();
                 break;
 
             case 4:
-                printf("\n\n Informe o elemento a ser removido: ");
-                scanf("%d", &elem);
-                res = remove_elem(&lst, elem);
+                res = apagar_ultimo_registro(&lst);
                 if(res == 1)
                     printf("\n\n Elemento removido com sucesso");
                 else
@@ -72,34 +76,20 @@ int main()
                 break;
 
             case 5:
-                printf("\n\n LISTA\n");
-                imprime_lista(lst);
+                imprime_tabela(lst);
                 getch();
                 break;
 
             case 6:
-                printf("\n\n Informe a posicao desejada: ");
-                scanf("%d", &pos);
-                res = obtem_valor_elem(lst, pos, &elem);
-                if(res == 1){
-                    printf("\n O elemento na posicao %d eh: %d", pos, elem);
-                }else{
-                    printf("Nao existe essa posicao na lista");
-                }
-                getch();
-                break;
-
-            case 7:
                 libera_lista(&lst);
                 printf("\n\nLISTA LIBERADA");
-                getch();
                 break;
 
             default:
 				printf("\n\n Pressione qualquer tecla para FINALIZAR...");
 				getch();
         }
-    } while(op != 8);
+    } while(op != 7);
 
     return 0;
 }

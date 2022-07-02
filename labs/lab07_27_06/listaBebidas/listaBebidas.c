@@ -17,15 +17,15 @@ struct no{
     struct no *prox;
 };
 
-// Lista cria_lista(){
-//     Lista cab;
-//     cab = (Lista) malloc(sizeof(struct no));
+Lista cria_lista(){
+    Lista cab;
+    cab = (Lista) malloc(sizeof(struct no));
 
-//     if(cab != NULL){
-//         cab->prox = NULL; // aponta pra NULL pra indicar que esta vazia
-//         cab->info = 0; // guardar quantidade
-//     }
-// }
+    if(cab != NULL){
+        cab->prox = NULL; // aponta pra NULL pra indicar que esta vazia
+        cab->info.volume = 0; // guardar quantidade
+    }
+}
 
 int lista_vazia(Lista lst){
     if(lst->prox == NULL){
@@ -49,25 +49,40 @@ int insere_registro(Lista *lst, char *nome, int vol, float preco){
     if(N == NULL)
         return 0;
     N->info = reg;
-    (*lst)->prox; // aponta para o 1 no atual da lista
+    N->prox = (*lst)->prox; // aponta para o 1 no atual da lista
     (*lst)->prox = N; // faz o no cabecalho apontar para o novo no
 
-    //(*lst)->info++;
+    (*lst)->info.volume++; // incrementa tamanho
     return 1;
 }
 
 int apagar_ultimo_registro(Lista *lst){
-    if(lista_vazia(*lst) == 1)
+    if(lista_vazia(*lst) == 1){
         return 0;
+    }
     Lista aux = *lst; // ponteiro aux para o 1 no
 
     // percorrimento ate achar o elem ou final da lista
-    while(aux->prox != NULL){
+    for(int tam=0; tam != ((*lst)->info.volume - 1); tam++){
         aux = aux->prox;
     }
     Lista aux2 = aux->prox; // aponta para o no a ser removido
     aux->prox = aux2->prox; // retira o no da lista
     free(aux2);
-    //(*lst)->info--;
+    (*lst)->info.volume--; // decrementando o tamanho
     return 1;
+}
+
+void imprime_tabela(Lista lst){
+    lst = lst->prox;
+    for(lst; lst != NULL; lst = lst->prox){
+        printf("\n Nome bebida: %s -", lst->info.nome);
+        printf(" Volume: %d -", lst->info.volume);
+        printf(" Preco: %.2f", lst->info.preco);
+    }
+}
+
+void libera_lista(Lista *lst){
+    free(*lst);
+    *lst = NULL;
 }

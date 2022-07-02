@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<math.h>
 #include<conio.h>
-#include "listaNaoOrdenada.h"
+#include "listaOrdenada.h"
 
 int main()
 {
@@ -51,7 +51,7 @@ int main()
             case 3:
                 printf("\n\n Informe o elemento a ser inserido: ");
                 scanf("%d", &elem);
-                res = insere_elem(&lst, elem);
+                res = insere_ord(&lst, elem);
                 if(res == 1)
                     printf("\n\n Elemento inserido com sucesso");
                 else
@@ -63,7 +63,7 @@ int main()
             case 4:
                 printf("\n\n Informe o elemento a ser removido: ");
                 scanf("%d", &elem);
-                res = remove_elem(&lst, elem);
+                res = remove_ord(&lst, elem);
                 if(res == 1)
                     printf("\n\n Elemento removido com sucesso");
                 else
@@ -80,19 +80,14 @@ int main()
             case 6:
                 printf("\n\n Informe a posicao desejada: ");
                 scanf("%d", &pos);
-                res = obtem_valor_elem(lst, pos, &elem);
-                if(res == 1){
-                    printf("\n O elemento na posicao %d eh: %d", pos, elem);
-                }else{
-                    printf("Nao existe essa posicao na lista");
-                }
+                elem = obtem_valor_elem(lst, pos);
+                printf("\n O elemento na posicao %d eh: %d", pos, elem);
                 getch();
                 break;
 
             case 7:
                 libera_lista(&lst);
                 printf("\n\nLISTA LIBERADA");
-                getch();
                 break;
 
             default:
