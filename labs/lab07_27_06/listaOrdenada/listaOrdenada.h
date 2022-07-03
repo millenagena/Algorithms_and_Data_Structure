@@ -1,7 +1,7 @@
 /*
 Nome: listaOrdenada
 Dados: numeros inteiros
-Lista das operações: cria_lista, lista_vazia, lista_cheia, insere_ord, remove_ord, obtem_valor_elem, imprime_lista, libera_lista
+Lista das operações: cria_lista, lista_vazia, insere_ord, remove_ord, obtem_valor_elem, imprime_lista, libera_lista
 */
 typedef struct no *Lista;
 
@@ -56,7 +56,7 @@ int obtem_valor_elem(Lista lst, int pos);
 
 /*
 Entradas: endereco da lista
-Pre-condicao: lista ser valida e nao estar vazia
+Pre-condicao: lista ser valida
 Processo: percorrer a lista e imprimir cada um dos elementos
 Saida: nenhuma
 Pos-condicao: nenhuma
