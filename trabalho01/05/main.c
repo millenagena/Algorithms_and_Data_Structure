@@ -6,7 +6,7 @@
 
 int main()
 {
-    int op, res, elem, tam, tam_lista;
+    int op, res, elem, tam, tam_lista, pos;
     double med;
     Lista lst, lst2;
 
@@ -86,7 +86,13 @@ int main()
                 break;
 
             case 6:
-                
+                printf("\nInforme a posicao do elemento a ser removido: ");
+                scanf("%d", &pos);
+                res = remove_pos(&lst, &elem, pos);
+                if(res == 1)
+                    printf("\n\n Elemento %d removido com sucesso", elem);
+                else
+                    printf("\n\n Elemento nao removido");
                 getch();
                 break;
 

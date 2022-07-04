@@ -50,7 +50,6 @@ int insere_inicio(Lista *lst, int elem){
         N->prox = N;
         *lst = N;
     }
-
     // trata lista com 1 ou + elementos
     else{
         N->prox = (*lst)->prox;
@@ -71,6 +70,27 @@ int remove_inicio(Lista *lst, int *elem){
         (*lst)->prox = aux->prox;
     free(aux);
     return 1;
+}
+
+int remove_pos(Lista *lst, int *elem, int pos){
+    // trata lista vazia
+    if(lista_vazia(*lst) == 1)
+        return 0;
+    Lista aux = (*lst)->prox; // faz aux apontar para o 1 no
+    *elem = (*lst)->info; // retorna o valor do no a ser removido;
+    if(*lst == (*lst)->prox) // trata lista com 1 unico no
+        *lst = NULL;
+
+    else{ // trata lista com mais de um elemento
+        while(aux->prox != (*lst)) // percorrendo ate o ultimo elemento
+            aux = aux->prox;
+        aux->prox = (*lst)->prox; // penultimo elem aponta para primeiro elem
+        *lst = aux;
+
+    free(aux);
+    return 1;
+    } 
+
 }
 
 void imprime_lista(Lista lst){
