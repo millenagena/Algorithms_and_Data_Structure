@@ -38,13 +38,13 @@ int insere_ord(Lista *lst, int elem){
         }
         *lst = N;
     }
-    else{
+    else{ // trata elem maior que o primeiro
         Lista aux = *lst;
         while(aux->prox != NULL && aux->prox->info < elem)
             aux = aux->prox;
         if(aux->prox == NULL) // trata elem maior que ultimo
             N->prox = NULL;
-        else{ // trata elem inserido no meio
+        else{ // trata elem inserido no meio de outros elementos
             N->prox = aux->prox;
             aux->prox->ant = N;
         }
@@ -57,22 +57,33 @@ int insere_ord(Lista *lst, int elem){
 int remove_ord(Lista *lst, int elem){
     if(lista_vazia(*lst)==1 || elem < (*lst)->info)
         return 0;
-    Lista aux = *lst;
-    while(aux->prox != NULL && aux->prox->info < elem)
-        aux = aux->prox;
-    Lista aux2 = aux->prox; // aponta pro elem a ser removido
 
-    
-
-    if(aux2 == NULL)
-        return 0;
-    if(aux2->info != elem) // elem nao esta na lista
-        return 0;
-    aux->prox = aux2->prox;
-    aux->prox->ant = aux;
-    free(aux2);
-
-    free(aux);
+    Lista aux = *lst; // aponta primeiro elemento
+    if(elem == aux->info){
+        aux->prox->ant = NULL;
+        *lst = aux->prox;
+        aux->prox = NULL; // teste
+        free(aux);
+    }
+    else{
+        while(aux->prox != NULL && aux->prox->info < elem)
+            aux = aux->prox;
+        Lista aux2 = aux->prox; // aponta pro elem a ser removido
+        if(aux2->prox == NULL && aux2->info == elem){ // trata ultimo elemento
+            aux->prox = NULL;
+            aux2->ant = NULL; // teste
+            free(aux2);
+        }else{
+            if(aux2 == NULL)
+                return 0;
+            if(aux2->info != elem) // elem nao esta na lista
+                return 0;
+            aux->prox = aux2->prox;
+            aux->prox->ant = aux;
+            free(aux2);
+        }
+    }
+    printf("\n hello4");
     return 1;
 }
 

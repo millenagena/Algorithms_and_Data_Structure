@@ -61,11 +61,11 @@ int main(){
             case 4:
                 printf("\n\n Informe o elemento a ser removido: ");
                 scanf("%d", &elem);
-                // res = remove_ord(&lst, elem);
-                // if(res == 1)
-                //     printf("\n\n Elemento removido com sucesso");
-                // else
-                //     printf("\n\n Elemento nao removido");
+                res = remove_ord(&lst, elem);
+                if(res == 1)
+                    printf("\n\n Elemento removido com sucesso");
+                else
+                    printf("\n\n Elemento nao removido");
                 getch();
                 break;
 
