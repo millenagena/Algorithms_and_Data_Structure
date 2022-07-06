@@ -5,7 +5,7 @@
 #include "listaOrdenada.h"
 
 int main(){
-    int op, elem, res;
+    int op, elem, res, pos;
     Lista lst;
     do{
         system("CLS || clear");
@@ -76,7 +76,13 @@ int main(){
                 break;
 
             case 6:
-                
+                printf("\n Informe a posicao do elemento: ");
+                scanf("%d", &pos);
+                res = obtem_valor_elem(lst, pos, &elem);
+                if(res == 1)
+                    printf("\n\n O elemento na posicao %d eh: %d", pos, elem);
+                else
+                    printf("\n\n Elemento nao encontrado");
                 getch();
                 break;
 

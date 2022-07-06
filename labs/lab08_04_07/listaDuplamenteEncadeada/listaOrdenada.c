@@ -86,6 +86,19 @@ int remove_ord(Lista *lst, int elem){
     return 1;
 }
 
+int obtem_valor_elem(Lista lst, int pos, int *elem){
+    int cont=0;
+    if(lista_vazia(lst) == 1)
+        return 0;
+    for(lst; lst != NULL; lst = lst->prox){
+        if(cont == pos){
+            *elem = lst->info;
+            return 1;
+        }
+        cont++;
+    }
+}
+
 void imprime_lista(Lista lst){
     if(lista_vazia(lst) == 1)
         printf("Lista vazia!");
