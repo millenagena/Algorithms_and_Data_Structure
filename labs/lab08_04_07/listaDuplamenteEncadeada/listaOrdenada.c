@@ -83,7 +83,6 @@ int remove_ord(Lista *lst, int elem){
             free(aux2);
         }
     }
-    printf("\n hello4");
     return 1;
 }
 

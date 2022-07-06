@@ -74,31 +74,13 @@ int tamanho(Lista lst){
 int media(Lista lst, double *med){
     double soma=0;
     int tam=0;
-       
+    tam = tamanho(lst);
     for(lst; lst != NULL; lst = lst->prox)
         soma += lst->info;
-    
-    tam = tamanho(lst);
     *med = soma/tam;
-    
     printf("%lf", *med);
     return 1;
 }
-
-// double media(Lista lst){
-//     double soma=0.0, med;
-
-//     for(lst; lst != NULL; lst = lst->prox){
-//         soma += lst->info;
-//     }
-//     int tam_lista = tamanho(lst);
-//     med = soma/tam_lista;
-
-//     printf("\n media: %lf\n", med);
-//     return med;
-// }
-
-
 
 int igualdade(Lista *lst1, Lista *lst2){
     if(lista_vazia(*lst1) && lista_vazia(*lst2))
@@ -166,7 +148,9 @@ void imprime_lista(Lista lst){
 }
 
 void libera_lista(Lista *lst){
-    free(*lst);
+    for(*lst; *lst != NULL; *lst = (*lst)->prox){
+        free(*lst);
+    }
     *lst = NULL;
     printf("\nLISTA LIBERADA");
 }
