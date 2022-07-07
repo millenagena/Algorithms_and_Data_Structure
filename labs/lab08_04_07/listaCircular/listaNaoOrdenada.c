@@ -117,3 +117,11 @@ void imprime_lista(Lista lst){
     }
 }
 
+void libera_lista(Lista *lst){
+    for(*lst; *lst != NULL; *lst = (*lst)->prox){
+        free(*lst);
+    }
+    *lst = NULL;
+    printf("\nLISTA LIBERADA");
+}
+

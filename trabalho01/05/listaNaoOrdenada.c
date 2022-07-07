@@ -73,7 +73,7 @@ int remove_inicio(Lista *lst, int *elem){
 }
 
 int remove_pos(Lista *lst, int *elem, int pos){
-    int cont=0;
+    int cont=1;
     if(lista_vazia(*lst) == 1)// trata lista vazia
         return 0;
     
@@ -85,17 +85,17 @@ int remove_pos(Lista *lst, int *elem, int pos){
     else if(pos == 0){
         *elem = aux->info;
         (*lst)->prox = aux->prox;
+    }else{
+        while(aux->prox != (*lst) && cont < pos){
+            aux = aux->prox;
+            cont++;
+        }
+        // cont == pos
+        Lista aux2 = aux->prox;
+        aux->prox = aux2->prox;
+        
+
     }
-    // quando a lista tiver mais de um elemento
-    // else{
-    //     while(cont == pos || aux != (*lst)){ // percorrendo ate o ultimo elemento
-    //         aux = aux->prox;
-    //         cont++;
-    //     }
-    //     if(cont == pos){
-
-    //     }
-
     free(aux);
     return 1;
 

@@ -23,8 +23,8 @@ int main()
             printf(" 6. Remover elemento no final\n");
             printf(" 7. Imprimir lista\n");
             printf(" 8. Obter valor de determinado elemento\n");
-            printf(" 12. Liberar lista\n");
-            printf(" 13. SAIR\n");
+            printf(" 9. Liberar lista\n");
+            printf(" 10. SAIR\n");
             printf(" Opcao: ");
             scanf("%d", &op);
             if((op < 1) || (op > 13)) {
@@ -32,7 +32,7 @@ int main()
                 getch();
                 system("CLS || clear");
             }
-        } while((op < 1) || (op > 13));
+        } while((op < 1) || (op > 10));
 
         switch(op){
             case 1:
@@ -111,22 +111,7 @@ int main()
                 break;
 
             case 9:
-                
-                getch();
-                break;
-            
-            case 10:
-                
-                getch();
-                break;
-            
-            case 11:
-                
-                getch();
-                break;
-            
-            case 12:
-                //libera_lista(&lst);
+                libera_lista(&lst);
                 getch();
                 break;
 
@@ -134,7 +119,7 @@ int main()
 				printf("\n\n Pressione qualquer tecla para FINALIZAR...");
 				getch();
         }
-    } while(op != 13);
+    } while(op != 10);
 
     return 0;
 }
