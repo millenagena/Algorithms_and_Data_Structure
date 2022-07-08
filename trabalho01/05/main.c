@@ -24,7 +24,7 @@ int main()
             printf(" 7. Remover em posicao\n");
             printf(" 8. Tamanho da lista\n");
             printf(" 9. Imprimir lista\n");
-            printf(" 10. Inverter a lista\n");
+            printf(" 10. Maior elemento da lista\n");
             printf(" 11. Retornar impares\n");
             printf(" 12. Liberar lista\n");
             printf(" 13. SAIR\n");
@@ -122,7 +122,7 @@ int main()
                 break;
             
             case 10:
-                
+                printf("\n\n MAIOR ELEMENTO DA LISTA: %d", maior(lst));
                 getch();
                 break;
             

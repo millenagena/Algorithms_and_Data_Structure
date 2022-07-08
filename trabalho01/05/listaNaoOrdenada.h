@@ -9,3 +9,4 @@ int insere_pos(Lista *lst, int pos, int elem);
 int remove_inicio(Lista *lst, int *elem);
 int remove_pos(Lista *lst, int *elem, int pos);
 void imprime_lista(Lista lst);
+int maior(Lista lst);

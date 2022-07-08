@@ -73,23 +73,19 @@ int insere_inicio(Lista *lst, int elem){
 }
 
 int insere_pos(Lista *lst, int pos, int elem){
-    int cont=1;
+    int cont=1, res;
     Lista N = (Lista) malloc(sizeof(struct no));
     if(N == NULL){return 0;}
     N->info = elem;
     Lista aux = (*lst)->prox; // aponta para o primeiro elemento
-    if(lista_vazia(*lst)){ // trata lista vazia
-        N->prox = N;
-        *lst = N;
-    }
-    if(pos == 0){ // trata primeira posicao
-        N->prox = (*lst)->prox;
-        (*lst)->prox = N;
+
+    if(lista_vazia(*lst) || (pos == 0)){ // trata primeira posicao
+        res = insere_inicio(lst, elem);
+        if(res==0){return 0;}
     }
     else if(pos >= tamanho(*lst)){ // trata se a posicao for maior q a ultima posicao
-        N->prox = (*lst)->prox;
-        (*lst)->prox = N;
-        *lst = N;
+        res = insere_final(lst, elem);
+        if(res==0){return 0;}
     }
     else{
         while(aux->prox != (*lst) && cont < pos){
@@ -149,13 +145,27 @@ int remove_pos(Lista *lst, int *elem, int pos){
 }
 
 void imprime_lista(Lista lst){
+    if(lista_vazia(lst))
+        printf("\nLISTA VAZIA!");
     Lista aux = lst->prox;
-    Lista aux2 = aux->prox;
-
-    printf("%d ", aux->info);
-    while(aux != aux2){
-        printf("%d ", aux2->info);
-        aux2 = aux2->prox;
+    while(aux != lst){ // printando do primeiro ao penultimo elemento
+        printf("%d ", aux->info);
+        aux = aux->prox;
     }
+    printf("%d", aux->info); // printando o ultimo elemento
 }
 
+int maior(Lista lst){
+    Lista aux = lst->prox;
+    int maior = aux->info;
+
+    while(aux != lst){ // percorrendo a lista para encontrar o maior elemento
+        if(aux->info > maior)
+            maior = aux->info;
+        aux = aux->prox;
+    }
+    if(aux->info > maior) // comparando com o ultimo elemento
+        maior = aux->info;
+
+    return maior;
+}
