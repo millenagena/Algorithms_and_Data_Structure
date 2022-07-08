@@ -19,11 +19,11 @@ int main()
             printf(" 2. Verificar lista vazia\n");
             printf(" 3. Inserir elemento no final\n");
             printf(" 4. Inserir elemento no inicio\n");
-            printf(" 5. Remover elemento no inicio\n");
-            printf(" 6. Remover elemento no final\n");
-            printf(" 7. Imprimir lista\n");
-            printf(" 8. Verificar igualdade de duas listas\n");
-            printf(" 9. Intercalar duas listas\n");
+            printf(" 5. Inserir em posicao\n");
+            printf(" 6. Remover elemento no inicio\n");
+            printf(" 7. Remover em posicao\n");
+            printf(" 8. Tamanho da lista\n");
+            printf(" 9. Imprimir lista\n");
             printf(" 10. Inverter a lista\n");
             printf(" 11. Retornar impares\n");
             printf(" 12. Liberar lista\n");
@@ -77,6 +77,19 @@ int main()
                 break;
 
             case 5:
+                printf("\n\n Informe o elemento a ser inserido: ");
+                scanf("%d", &elem);
+                printf("\n\n Informe a posicao a ser inserida: ");
+                scanf("%d", &pos);
+                res = insere_pos(&lst, pos, elem);
+                if(res == 1)
+                    printf("\n\n Elemento inserido com sucesso");
+                else
+                    printf("\n\n Elemento nao inserido");
+                getch();
+                break;
+
+            case 6:
                 res = remove_inicio(&lst, &elem);
                 if(res == 1)
                     printf("\n\n Elemento %d removido com sucesso", elem);
@@ -85,7 +98,7 @@ int main()
                 getch();
                 break;
 
-            case 6:
+            case 7:
                 printf("\nInforme a posicao do elemento a ser removido: ");
                 scanf("%d", &pos);
                 res = remove_pos(&lst, &elem, pos);
@@ -96,19 +109,15 @@ int main()
                 getch();
                 break;
 
-            case 7:
-                printf("\n\n LISTA\n");
-                imprime_lista(lst);
-                getch();
-                break;
-            
             case 8:
-                
+                tam = tamanho(lst);
+                printf("O tamanho da lista eh: %d", tam);
                 getch();
                 break;
 
             case 9:
-                
+                printf("\n\n LISTA\n");
+                imprime_lista(lst);
                 getch();
                 break;
             

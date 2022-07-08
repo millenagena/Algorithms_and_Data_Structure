@@ -20,6 +20,20 @@ int lista_vazia(Lista lst){
         return 0;
 }
 
+int tamanho(Lista lst){
+    int tam=0;
+    Lista aux = lst->prox;
+    if(lista_vazia(lst))
+        tam=0;
+    else{
+        tam = 1;
+        for(aux; aux != lst; aux = aux->prox){
+            tam++;
+        }
+    }
+    return tam;
+}
+
 int insere_final(Lista *lst, int elem){
     // aloca um novo no e preenche o campo info
     Lista N = (Lista) malloc(sizeof(struct no));
@@ -58,6 +72,36 @@ int insere_inicio(Lista *lst, int elem){
     return 1;
 }
 
+int insere_pos(Lista *lst, int pos, int elem){
+    int cont=1;
+    Lista N = (Lista) malloc(sizeof(struct no));
+    if(N == NULL){return 0;}
+    N->info = elem;
+    Lista aux = (*lst)->prox; // aponta para o primeiro elemento
+    if(lista_vazia(*lst)){ // trata lista vazia
+        N->prox = N;
+        *lst = N;
+    }
+    if(pos == 0){ // trata primeira posicao
+        N->prox = (*lst)->prox;
+        (*lst)->prox = N;
+    }
+    else if(pos >= tamanho(*lst)){ // trata se a posicao for maior q a ultima posicao
+        N->prox = (*lst)->prox;
+        (*lst)->prox = N;
+        *lst = N;
+    }
+    else{
+        while(aux->prox != (*lst) && cont < pos){
+            aux = aux->prox;
+            cont++;
+        }
+        N->prox = aux->prox;
+        aux->prox = N;
+    }
+    return 1;
+}
+
 int remove_inicio(Lista *lst, int *elem){
     // trata lista vazia
     if(lista_vazia(*lst) == 1)
@@ -77,8 +121,11 @@ int remove_pos(Lista *lst, int *elem, int pos){
     if(lista_vazia(*lst) == 1)// trata lista vazia
         return 0;
     
+    // trata posicao maior que tamanho
+    if(pos >= tamanho(*lst))
+        return 0;
+    
     Lista aux = (*lst)->prox; // faz aux apontar para o 1 no
-
     if(*lst == (*lst)->prox)// quando a lista tiver apenas um no
         *lst = NULL;
     // quando o elemento estiver na primeira posicao
@@ -90,15 +137,15 @@ int remove_pos(Lista *lst, int *elem, int pos){
             aux = aux->prox;
             cont++;
         }
-        // cont == pos
         Lista aux2 = aux->prox;
+        *elem = aux2->info;
         aux->prox = aux2->prox;
-        
-
+        if(aux2 == (*lst)){ // caso o elemento a ser removido seja o ultimo
+            (*lst) = aux;
+        }
+        free(aux2);
     }
-    free(aux);
     return 1;
-
 }
 
 void imprime_lista(Lista lst){
