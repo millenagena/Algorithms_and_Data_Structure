@@ -25,9 +25,8 @@ int main()
             printf(" 8. Tamanho da lista\n");
             printf(" 9. Imprimir lista\n");
             printf(" 10. Maior elemento da lista\n");
-            printf(" 11. Retornar impares\n");
-            printf(" 12. Liberar lista\n");
-            printf(" 13. SAIR\n");
+            printf(" 11. Remover pares\n");
+            printf(" 12. SAIR\n");
             printf(" Opcao: ");
             scanf("%d", &op);
             if((op < 1) || (op > 13)) {
@@ -35,7 +34,7 @@ int main()
                 getch();
                 system("CLS || clear");
             }
-        } while((op < 1) || (op > 13));
+        } while((op < 1) || (op > 12));
 
         switch(op){
             case 1:
@@ -111,7 +110,7 @@ int main()
 
             case 8:
                 tam = tamanho(lst);
-                printf("O tamanho da lista eh: %d", tam);
+                printf("\n\n O tamanho da lista eh: %d", tam);
                 getch();
                 break;
 
@@ -127,12 +126,11 @@ int main()
                 break;
             
             case 11:
-                
-                getch();
-                break;
-            
-            case 12:
-                //libera_lista(&lst);
+                res = remove_pares(&lst);
+                if(res == 1)
+                    printf("\n\n Elementos pares removidos com sucesso");
+                else
+                    printf("\n\n Elementos nao removidos");
                 getch();
                 break;
 
@@ -140,7 +138,7 @@ int main()
 				printf("\n\n Pressione qualquer tecla para FINALIZAR...");
 				getch();
         }
-    } while(op != 13);
+    } while(op != 12);
 
     return 0;
 }

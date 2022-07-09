@@ -23,13 +23,14 @@ int lista_vazia(Lista lst){
 int tamanho(Lista lst){
     int tam=0;
     Lista aux = lst->prox;
-    if(lista_vazia(lst))
+
+    if(lista_vazia(lst)) // trata lista vazia
         tam=0;
-    else{
-        tam = 1;
+    else{ // percorre a lista
         for(aux; aux != lst; aux = aux->prox){
             tam++;
         }
+        tam++; // contabilizando o ultimo elemento
     }
     return tam;
 }
@@ -74,10 +75,9 @@ int insere_inicio(Lista *lst, int elem){
 
 int insere_pos(Lista *lst, int pos, int elem){
     int cont=1, res;
-    Lista N = (Lista) malloc(sizeof(struct no));
+    Lista N = (Lista) malloc(sizeof(struct no)); // aloca o novo no
     if(N == NULL){return 0;}
-    N->info = elem;
-    Lista aux = (*lst)->prox; // aponta para o primeiro elemento
+    N->info = elem; // armazena o elemento no novo no
 
     if(lista_vazia(*lst) || (pos == 0)){ // trata primeira posicao
         res = insere_inicio(lst, elem);
@@ -88,6 +88,7 @@ int insere_pos(Lista *lst, int pos, int elem){
         if(res==0){return 0;}
     }
     else{
+        Lista aux = (*lst)->prox; // aponta para o primeiro elemento
         while(aux->prox != (*lst) && cont < pos){
             aux = aux->prox;
             cont++;
@@ -168,4 +169,32 @@ int maior(Lista lst){
         maior = aux->info;
 
     return maior;
+}
+
+int remove_pares(Lista *lst){
+    if(lista_vazia(*lst))
+        return 0;
+
+    Lista aux2; // ponteiro que vai apontar para o elem a ser removido
+    if((*lst)->prox->info % 2 == 0){ // verifica se o primeiro elem eh par
+        aux2 = (*lst)->prox;
+        (*lst)->prox = aux2->prox;
+        free(aux2);
+    }
+    Lista aux = (*lst)->prox; // apontando para o primeiro elemento
+    while(aux->prox != (*lst)){ // percorre a lista
+        if(aux->prox->info % 2 == 0){
+            aux2 = aux->prox; // aponta pro elem a ser removido
+            aux->prox = aux2->prox;
+            free(aux2); // libera memoria
+        }
+        aux = aux->prox; // proximo elemento
+    }
+    if(aux->prox->info % 2 == 0){// verifica se o ultimo elem eh par
+        aux2 = aux->prox; // aponta pro elem a ser removido (ultimo)
+        aux->prox = aux2->prox; // aponta pro prox elem
+        (*lst) = aux; // lista aponta para o penultimo elem
+        free(aux2);
+    }
+    return 1;
 }
