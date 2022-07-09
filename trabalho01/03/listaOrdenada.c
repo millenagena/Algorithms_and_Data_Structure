@@ -82,18 +82,18 @@ int media(Lista lst, double *med){
     return 1;
 }
 
-int igualdade(Lista *lst1, Lista *lst2){
-    if(lista_vazia(*lst1) && lista_vazia(*lst2))
+int igualdade(Lista lst1, Lista lst2){
+    if(lista_vazia(lst1) && lista_vazia(lst2))
         return 1;
-    if(lista_vazia(*lst1) || lista_vazia(*lst2))
+    if(lista_vazia(lst1) || lista_vazia(lst2))
         return 0;
-    if(tamanho(*lst1) != tamanho(*lst2))
+    if(tamanho(lst1) != tamanho(lst2))
         return 0;
     else{
-        for(*lst1, *lst2; *lst1 != NULL, *lst2 != NULL; 
-            *lst1 = (*lst1)->prox, *lst2 = (*lst2)->prox){
+        for(lst1, lst2; lst1 != NULL, lst2 != NULL; 
+            lst1 = lst1->prox, lst2 = lst2->prox){
 
-            if((*lst1)->info != (*lst2)->info)
+            if(lst1->info != lst2->info)
                 return 0;
         }
         return 1;
@@ -148,9 +148,15 @@ void imprime_lista(Lista lst){
 }
 
 void libera_lista(Lista *lst){
-    for(*lst; *lst != NULL; *lst = (*lst)->prox){
-        free(*lst);
+    Lista aux = (*lst);
+    Lista aux2;
+    
+    while(aux->prox != NULL){ // percorrendo a lista
+        aux2 = aux;
+        aux = aux->prox;
+        free(aux2);
     }
+    free(aux); // liberando o ultimo no
     *lst = NULL;
     printf("\nLISTA LIBERADA");
 }

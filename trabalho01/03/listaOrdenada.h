@@ -70,7 +70,7 @@ Processo: percorer as listas e comparar cada um dos elementos
 Saida: 1 se iguais 0 se diferentes
 Pos-condicao: nenhuma
 */
-int igualdade(Lista *lst1, Lista *lst2);
+int igualdade(Lista lst1, Lista lst2);
 
 /*
 Entradas: enderecos de duas listas

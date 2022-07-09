@@ -103,7 +103,7 @@ int main()
                     scanf("%d", &elem);
                     res = insere_ord(&lst2, elem);
                 }
-                res = igualdade(&lst, &lst2);
+                res = igualdade(lst, lst2);
                 if(res == 1)
                     printf("\nLISTAS IGUAIS");
                 else
