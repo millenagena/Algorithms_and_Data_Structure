@@ -107,27 +107,33 @@ int obtem_valor_elem(Lista lst, int pos, int *elem){
 }
 
 void imprime_lista(Lista lst){
-    Lista aux = lst->prox;
-    Lista aux2 = aux->prox;
-
-    printf("%d ", aux->info);
-    while(aux != aux2){
-        printf("%d ", aux2->info);
-        aux2 = aux2->prox;
+    if(lista_vazia(lst))
+        printf("\nLISTA VAZIA!");
+    else{
+        Lista aux = lst->prox;
+        while(aux != lst){ // printando do primeiro ao penultimo elemento
+            printf("%d ", aux->info);
+            aux = aux->prox;
+        }
+        printf("%d", aux->info); // printando o ultimo elemento
     }
 }
 
 void libera_lista(Lista *lst){
-    Lista aux = (*lst)->prox;
-    Lista aux2;
-    
-    while(aux != (*lst)){ // percorrendo a lista
-        aux2 = aux;
-        aux = aux->prox;
-        free(aux2);
+    if(lista_vazia(*lst))
+        printf("\nLISTA VAZIA");
+    else{
+        Lista aux = (*lst)->prox;
+        Lista aux2;
+        
+        while(aux != (*lst)){ // percorrendo a lista
+            aux2 = aux;
+            aux = aux->prox;
+            free(aux2);
+        }
+        free(aux); // liberando o ultimo no
+        *lst = NULL;
+        printf("\nLISTA LIBERADA");
     }
-    free(aux); // liberando o ultimo no
-    *lst = NULL;
-    printf("\nLISTA LIBERADA");
 }
 

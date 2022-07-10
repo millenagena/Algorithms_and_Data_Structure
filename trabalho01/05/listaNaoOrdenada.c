@@ -148,12 +148,14 @@ int remove_pos(Lista *lst, int *elem, int pos){
 void imprime_lista(Lista lst){
     if(lista_vazia(lst))
         printf("\nLISTA VAZIA!");
-    Lista aux = lst->prox;
-    while(aux != lst){ // printando do primeiro ao penultimo elemento
-        printf("%d ", aux->info);
-        aux = aux->prox;
+    else{
+        Lista aux = lst->prox;
+        while(aux != lst){ // printando do primeiro ao penultimo elemento
+            printf("%d ", aux->info);
+            aux = aux->prox;
+        }
+        printf("%d", aux->info); // printando o ultimo elemento
     }
-    printf("%d", aux->info); // printando o ultimo elemento
 }
 
 int maior(Lista lst){
@@ -197,4 +199,22 @@ int remove_pares(Lista *lst){
         free(aux2);
     }
     return 1;
+}
+
+void libera_lista(Lista *lst){
+    if(lista_vazia(*lst))
+        printf("\nLISTA VAZIA");
+    else{
+        Lista aux = (*lst)->prox;
+        Lista aux2;
+        
+        while(aux != (*lst)){ // percorrendo a lista
+            aux2 = aux;
+            aux = aux->prox;
+            free(aux2);
+        }
+        free(aux); // liberando o ultimo no
+        *lst = NULL;
+        printf("\nLISTA LIBERADA");
+    }
 }

@@ -148,15 +148,19 @@ void imprime_lista(Lista lst){
 }
 
 void libera_lista(Lista *lst){
-    Lista aux = (*lst);
-    Lista aux2;
-    
-    while(aux->prox != NULL){ // percorrendo a lista
-        aux2 = aux;
-        aux = aux->prox;
-        free(aux2);
+    if(lista_vazia(*lst))
+        printf("\nLISTA VAZIA");
+    else{
+        Lista aux = (*lst);
+        Lista aux2;
+        
+        while(aux != NULL){ // percorrendo a lista
+            aux2 = aux;
+            aux = aux->prox;
+            free(aux2);
+        }
+        free(aux); // liberando o ultimo no
+        *lst = NULL;
+        printf("\nLISTA LIBERADA");
     }
-    free(aux); // liberando o ultimo no
-    *lst = NULL;
-    printf("\nLISTA LIBERADA");
 }

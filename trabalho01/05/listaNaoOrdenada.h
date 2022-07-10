@@ -11,3 +11,4 @@ int remove_pos(Lista *lst, int *elem, int pos);
 void imprime_lista(Lista lst);
 int maior(Lista lst);
 int remove_pares(Lista *lst);
+void libera_lista(Lista *lst);
