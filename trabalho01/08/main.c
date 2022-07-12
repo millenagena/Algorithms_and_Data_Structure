@@ -13,7 +13,7 @@ int main()
   {
     do
     {
-      printf("\n --- LISTAS DINAMICAS ENCADEADAS --- \n\n");
+      printf("\n --- POLINOMIOS --- \n\n");
       printf(" Escolha uma opcao\n");
       printf(" 1. Inicializar polinomio\n");
       printf(" 2. Verificar lista vazia\n");
@@ -23,7 +23,7 @@ int main()
       printf(" 6. Obter tamanho da lista\n");
       printf(" 7. Reinicializar polinomio\n");
       printf(" 8. Calcular valor do polinomio\n");
-      printf(" 13. SAIR\n");
+      printf(" 9. SAIR\n");
       printf(" Opcao: ");
       scanf("%d", &op);
       if ((op < 1) || (op > 13))
@@ -77,13 +77,11 @@ int main()
     case 5:
       printf("\n\n LISTA\n");
       imprime_lista(lst);
-
       break;
 
     case 6:
       tam = tamanho(lst);
       printf("\n\n Tamanho da lista: %d", tam);
-
       break;
 
     case 7:
@@ -98,7 +96,6 @@ int main()
       {
         printf("\nErro");
       }
-
       break;
 
     case 8:
@@ -113,19 +110,6 @@ int main()
       {
         printf("\nErro");
       }
-
-      break;
-
-    case 9:
-
-      break;
-
-    case 10:
-
-      break;
-
-    case 11:
-
       break;
 
     default:

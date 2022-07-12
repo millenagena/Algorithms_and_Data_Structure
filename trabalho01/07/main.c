@@ -13,7 +13,7 @@ int main()
     do{
         system("CLS || clear");
         do{
-            printf(" --- LISTAS DINAMICAS ENCADEADAS --- \n\n");
+            printf(" --- LISTAS SOLDADOS --- \n\n");
             printf(" Escolha uma opcao\n");
             printf(" 1. Criar lista\n");
             printf(" 2. Verificar lista vazia\n");
