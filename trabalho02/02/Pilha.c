@@ -49,10 +49,21 @@ int le_topo(Pilha *p, int *elem){
 }
 
 void imprime(Pilha p){
-    Pilha aux = p;
-    while(aux != NULL){
+    int elem_removido;
+    Pilha p2;
+    p2 = cria_pilha();
+
+    while(p != NULL){
         printf("%d ", p->info);
-        aux = aux->prox;
+        push(&p2, p->info);
+        pop(&p, &elem_removido);
+    }
+
+    if(pilha_vazia(p2) == 0){
+        while(p2 != NULL){
+            push(&p, p2->info); // adiciona o topo de p2 em p
+            pop(&p2, &elem_removido); // remove o topo de p2
+        }
     }
 }
 
@@ -78,9 +89,9 @@ int eh_palindromo(char *vet){
 }
 
 int elimina(Pilha *p, int elem){
-    int elem_removido, tam, tam2;
     if(pilha_vazia(*p))
         return 0;
+    int elem_removido, tam, tam2;
     Pilha p2;
     p2 = cria_pilha(); // criando pilha auxiliar
 
@@ -103,32 +114,28 @@ int elimina(Pilha *p, int elem){
     return 1;
 }
 
-// int pares_e_impares(Pilha p){
-//     int tam;
-//     if(pilha_vazia(p))
-//         return 0;
+int pares_e_impares(Pilha *p){
+    if(pilha_vazia(*p))
+        return 0;
+    
+    int elem_removido;
+    Pilha p_par, p_impar;
+    p_par = cria_pilha(); 
+    p_impar = cria_pilha(); 
 
-//     Pilha p_par;
-//     Pilha p_impar;
-//     p_par = cria_pilha(); 
-//     p_impar = cria_pilha(); 
+    while((*p) != NULL){
+        if((*p)->info % 2 == 0){
+            push(&p_par, (*p)->info);
+        }else{
+            push(&p_impar, (*p)->info);
+        }
+        pop(p, &elem_removido);
+    }
+    printf("\nPilha de numeros pares:\n");
+    imprime(p_par);
+    printf("\nPilha de numeros impares:\n");
+    imprime(p_impar);
 
-//     tam = p->topo; // armazenando a quantidade de posicoes ocupadas
-
-//     for(int i=0; i <= tam; i++){
-//         if(p->vet[p->topo] % 2 == 0){
-//             push(p_par, p->vet[p->topo]);
-//         }else{
-//             push(p_impar, p->vet[p->topo]);
-//         }
-//         p->topo--;
-//     }
-//     printf("\nPilha de numeros pares:\n");
-//     imprime(p_par);
-//     printf("\nPilha de numeros impares:\n");
-//     imprime(p_impar);
-
-//     p->topo = tam;
-//     return 1;
-// }
+    return 1;
+}
 

@@ -57,12 +57,22 @@ int le_topo(Pilha p, int *elem){
 }
 
 void imprime(Pilha p){
-    int aux = p->topo;
+    int elem_removido;
+    Pilha p2;
+    p2 = cria_pilha();
+
     while(p->topo != -1){
         printf("%d ", p->vet[p->topo]);
-        p->topo--;
+        push(p2, p->vet[p->topo]);
+        pop(p, &elem_removido);
     }
-    p->topo = aux;
+
+    if(pilha_vazia(p2) == 0){
+        for(int i=0; p2->topo != -1; i++){
+            push(p, p2->vet[p2->topo]); // adiciona o topo de p2 em p
+            pop(p2, &elem_removido); // remove o topo de p2
+        }
+    }
 }
 
 int eh_palindromo(char *vet){
@@ -116,7 +126,7 @@ int elimina(Pilha p, int elem){
 }
 
 int pares_e_impares(Pilha p){
-    int tam;
+    int elem_removido;
     if(pilha_vazia(p))
         return 0;
 
@@ -125,21 +135,18 @@ int pares_e_impares(Pilha p){
     p_par = cria_pilha(); 
     p_impar = cria_pilha(); 
 
-    tam = p->topo; // armazenando a quantidade de posicoes ocupadas
-
-    for(int i=0; i <= tam; i++){
+    while(p->topo != -1){
         if(p->vet[p->topo] % 2 == 0){
             push(p_par, p->vet[p->topo]);
         }else{
             push(p_impar, p->vet[p->topo]);
         }
-        p->topo--;
+        pop(p, &elem_removido);
     }
     printf("\nPilha de numeros pares:\n");
     imprime(p_par);
     printf("\nPilha de numeros impares:\n");
     imprime(p_impar);
 
-    p->topo = tam;
     return 1;
 }

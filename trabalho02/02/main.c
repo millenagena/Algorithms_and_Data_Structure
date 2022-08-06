@@ -114,17 +114,17 @@ int main()
                 break;
             
             case 9:
-                // p2 = cria_pilha();
-                // printf("\n\n Informe a quantidade de elementos que deseja inserir: ");
-                // scanf("%d", &tam);
-                // for(int i=0; i<tam; i++){
-                //     printf("\n Elemento %d: ", i+1);
-                //     scanf("%d", &elem);
-                //     push(p2, elem);
-                // }
-                // res = pares_e_impares(p2);
-                // if(res == 0)
-                //     printf("\n\n FALHA");
+                p2 = cria_pilha();
+                printf("\n\n Informe a quantidade de elementos que deseja inserir: ");
+                scanf("%d", &tam);
+                for(int i=0; i<tam; i++){
+                    printf("\n Elemento %d: ", i+1);
+                    scanf("%d", &elem);
+                    push(&p2, elem);
+                }
+                res = pares_e_impares(&p2);
+                if(res == 0)
+                    printf("\n\n FALHA");
                 getch();
                 break;
 
