@@ -23,7 +23,6 @@ int pilha_vazia(Pilha p){
 
 int push(Pilha *p, int elem){
     Pilha N = (Pilha) malloc(sizeof(struct pilha));
-    N->info = elem;
     if(N==NULL){return 0;}
     N->info = elem;
     N->prox = *p;
@@ -91,7 +90,7 @@ int eh_palindromo(char *vet){
 int elimina(Pilha *p, int elem){
     if(pilha_vazia(*p))
         return 0;
-    int elem_removido, tam, tam2;
+    int elem_removido;
     Pilha p2;
     p2 = cria_pilha(); // criando pilha auxiliar
 

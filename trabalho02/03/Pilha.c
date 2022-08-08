@@ -67,11 +67,9 @@ void imprime(Pilha p){
         pop(p, &elem_removido);
     }
 
-    if(pilha_vazia(p2) == 0){
-        for(int i=0; p2->topo != -1; i++){
-            push(p, p2->vet[p2->topo]); // adiciona o topo de p2 em p
-            pop(p2, &elem_removido); // remove o topo de p2
-        }
+    while(p2->topo != -1){
+        push(p, p2->vet[p2->topo]);
+        pop(p2, &elem_removido);
     }
 }
 
@@ -110,14 +108,13 @@ int eh_palindromo(char *vet){
 }
 
 int elimina(Pilha p, int elem){
-    int elem_removido, tam, tam2;
+    int elem_removido;
     if(pilha_vazia(p))
         return 0;
     Pilha p2;
     p2 = cria_pilha(); // criando pilha auxiliar
-    tam = p->topo; // armazenando a quantidade de posicoes ocupadas
 
-    for(int i=0; i <= tam; i++){
+    while(p->topo != -1){
         if(p->vet[p->topo] == elem){
             pop(p, &elem_removido);
             break;
@@ -125,8 +122,6 @@ int elimina(Pilha p, int elem){
         push(p2, p->vet[p->topo]);
         pop(p, &elem_removido);
     }
-    imprime(p);
-    printf("\n");
 
     // voltando os elementos para a pilha inicial
     if(pilha_vazia(p2) == 0){
@@ -143,8 +138,7 @@ int pares_e_impares(Pilha p){
     if(pilha_vazia(p))
         return 0;
 
-    Pilha p_par;
-    Pilha p_impar;
+    Pilha p_par, p_impar;
     p_par = cria_pilha(); 
     p_impar = cria_pilha(); 
 
