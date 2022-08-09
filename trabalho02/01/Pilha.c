@@ -75,6 +75,24 @@ void imprime(Pilha p){
     }
 }
 
+int imprime_reversa(Pilha p){
+    int elem_removido;
+    Pilha p2;
+    p2 = cria_pilha();
+
+    while(p->topo != -1){
+        push(p2, p->vet[p->topo]);
+        pop(p, &elem_removido);
+    }
+
+    while(p2->topo != -1){
+        printf("%d ", p2->vet[p2->topo]);
+        push(p, p2->vet[p2->topo]);
+        pop(p2, &elem_removido);
+    }
+
+}
+
 int eh_palindromo(char *vet){
     int tam, meio, elem, i;
     Pilha p;

@@ -22,19 +22,20 @@ int main()
             printf(" 5. Desempilhar\n");
             printf(" 6. Ler elemento no topo\n");
             printf(" 7. Imprime elementos\n");
-            printf(" 8. Palindromo\n");
-            printf(" 9. Elimina elemento\n");
-            printf(" 10. Pares e impares\n");
-            printf(" 11. SAIR\n");
+            printf(" 8. Imprime elementos de forma reversa\n");
+            printf(" 9. Palindromo\n");
+            printf(" 10. Elimina elemento\n");
+            printf(" 11. Pares e impares\n");
+            printf(" 12. SAIR\n");
             printf(" Opcao: ");
             scanf("%d", &op);
-            if((op < 1) || (op > 11)) {
+            if((op < 1) || (op > 12)) {
 
                 printf("\n\n Opcao Invalida! Tente novamente...");
                 getch();
                 system("CLS || clear");
             }
-        } while((op < 1) || (op > 11));
+        } while((op < 1) || (op > 12));
 
         switch(op){
             case 1:
@@ -99,6 +100,11 @@ int main()
                 break;
             
             case 8:
+                imprime_reversa(p);
+                getch();
+                break;
+            
+            case 9:
                 printf("\n\n Informe a palavra: ");
                 fflush(stdin);
                 gets(palavra);
@@ -111,7 +117,7 @@ int main()
                 getch();
                 break;
             
-            case 9:
+            case 10:
                 printf("\n\n Informe o elemento a ser removido: ");
                 scanf("%d", &elem);
                 res = elimina(p, elem);
@@ -123,7 +129,7 @@ int main()
                 getch();
                 break;
             
-            case 10:
+            case 11:
                 p2 = cria_pilha();
                 printf("\n\n Informe a quantidade de elementos que deseja inserir: ");
                 scanf("%d", &tam);
@@ -142,7 +148,7 @@ int main()
 				printf("\n\n Pressione qualquer tecla para FINALIZAR...");
 				getch();
         }
-    } while(op != 11);
+    } while(op != 12);
 
     return 0;
 }
