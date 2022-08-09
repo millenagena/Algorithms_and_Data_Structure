@@ -130,8 +130,6 @@ int elimina(Pilha p, int elem){
         push(p2, p->vet[p->topo]);
         pop(p, &elem_removido);
     }
-    imprime(p);
-    printf("\n");
 
     // voltando os elementos para a pilha inicial
     if(pilha_vazia(p2) == 0){
